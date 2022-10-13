@@ -21,6 +21,15 @@ public class AdmobManager: NSObject {
     public var openAdsDelegate: AdmobManagerOpenAdsDelegate?
     public var adLoaderDelegate: AdmobManagerNativeAdLoaderDelegate?
     
+    public var interstitialCounter: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: configs.keyInterstitialCounterStoraged)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: configs.keyInterstitialCounterStoraged)
+            UserDefaults.standard.synchronize()
+        }
+    }
     public var isProversion: Bool {
         get {
             return UserDefaults.standard.bool(forKey: configs.keyProversionStoraged)
@@ -49,6 +58,21 @@ public class AdmobManager: NSObject {
     private var completionRewardAds: ((Double) -> Void)?
     private var rewardAdHasBeenShow: Bool = false
     private var rewardAdLoading: Bool = false
+}
+
+//MARK: Configs
+public extension AdmobManager {
+    func start(completionHandler: (GADInitializationCompletionHandler)? = nil) {
+        GADMobileAds.sharedInstance().start(completionHandler: completionHandler)
+    }
+    
+    func addTestDevices(_ deviceIDs: [String]) {
+        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = deviceIDs
+    }
+    
+    func setMaxAdContentRating(_ rating: GADMaxAdContentRating) {
+        GADMobileAds.sharedInstance().requestConfiguration.maxAdContentRating = rating
+    }
 }
 
 //MARK: Interstitial
@@ -118,6 +142,7 @@ public extension AdmobManager {
                     AdmobManager.shared.interstitialHasBeenShow = true
                     ad.present(fromRootViewController: topViewController)
                     AdmobManager.shared.lastDate = Date().timeIntervalSince1970
+                    AdmobManager.shared.interstitialCounter += 1
                 } else {
                     if let completion = completion {
                         completion()

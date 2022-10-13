@@ -11,13 +11,21 @@ import UIKit
 open class AdmobConfiguration {
     public init() {}
     
-    public var showLog: Bool = false
     public var keyProversionStoraged: String = "kProversionStoraged"
+    public var keyInterstitialCounterStoraged: String = "keyInterstitialCounterStoraged"
     public var adUnit: AdUnits = AdUnits()
-    public var removeADs_productID: String = ""
+    public var testDevices: [String] = [] {
+        didSet {
+            
+        }
+    }
+    
+    ///Show all log when request and show ads
+    public var showLog: Bool = true
+    
+    ///default is 0 - alway request ads
     public var frequencyCapping: Double = 0
     
-    ///impressionPercentage for Interstitial. 
     ///default is 100% - alway show
     public var impressionPercentage: Int = 100
     
