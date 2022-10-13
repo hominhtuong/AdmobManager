@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E4149F128F8967D005936B8 /* MTBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4149F028F8967D005936B8 /* MTBannerView.swift */; };
+		4E4149F528F89E2E005936B8 /* AdUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4149F428F89E2E005936B8 /* AdUnits.swift */; };
 		4E718FDD28F0324900AADABC /* AdmobManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E718FDB28F0324900AADABC /* AdmobManager.h */; };
 		4E718FDE28F0324900AADABC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E718FDC28F0324900AADABC /* Info.plist */; };
 		4E718FE728F0325500AADABC /* AdmobConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E718FE028F0325500AADABC /* AdmobConfiguration.swift */; };
@@ -35,6 +37,8 @@
 /* Begin PBXFileReference section */
 		33B126D757745E77937FA58F /* Pods-MTAdmob.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTAdmob.debug.xcconfig"; path = "Target Support Files/Pods-MTAdmob/Pods-MTAdmob.debug.xcconfig"; sourceTree = "<group>"; };
 		4822AFAC98CFA1B6A65303EF /* Pods-AdmobManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdmobManager.debug.xcconfig"; path = "Target Support Files/Pods-AdmobManager/Pods-AdmobManager.debug.xcconfig"; sourceTree = "<group>"; };
+		4E4149F028F8967D005936B8 /* MTBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTBannerView.swift; sourceTree = "<group>"; };
+		4E4149F428F89E2E005936B8 /* AdUnits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdUnits.swift; sourceTree = "<group>"; };
 		4E718FDB28F0324900AADABC /* AdmobManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdmobManager.h; sourceTree = "<group>"; };
 		4E718FDC28F0324900AADABC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E718FE028F0325500AADABC /* AdmobConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdmobConfiguration.swift; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 				4E718FE428F0325500AADABC /* MTLog.swift */,
 				4E718FE528F0325500AADABC /* AdmobProtocols.swift */,
 				4E718FE628F0325500AADABC /* AdmobManager.swift */,
+				4E4149F428F89E2E005936B8 /* AdUnits.swift */,
+				4E4149F028F8967D005936B8 /* MTBannerView.swift */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -232,11 +238,13 @@
 			files = (
 				4E718FED28F0325500AADABC /* AdmobManager.swift in Sources */,
 				4E718FE828F0325500AADABC /* NativeAdView.swift in Sources */,
+				4E4149F528F89E2E005936B8 /* AdUnits.swift in Sources */,
 				4E718FEA28F0325500AADABC /* NativeAdTableviewCell.swift in Sources */,
 				4E718FE728F0325500AADABC /* AdmobConfiguration.swift in Sources */,
 				4E718FEC28F0325500AADABC /* AdmobProtocols.swift in Sources */,
 				4E718FEB28F0325500AADABC /* MTLog.swift in Sources */,
 				4E718FE928F0325500AADABC /* GADBannerViewExt.swift in Sources */,
+				4E4149F128F8967D005936B8 /* MTBannerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

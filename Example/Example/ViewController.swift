@@ -151,13 +151,14 @@ extension ViewController {
             }
         }
         
-        let banner = AdmobManager.shared.bannerView(rootVC: self)
+        let banner = MTBannerView()
         banner >>> view >>> {
             $0.snp.makeConstraints {
                 $0.leading.trailing.equalToSuperview()
                 $0.bottom.equalTo(botSafe)
                 $0.height.equalTo(50)
             }
+            $0.configuration(rootViewController: self)
         }
     }
     

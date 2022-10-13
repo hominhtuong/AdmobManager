@@ -19,7 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GADMobileAds.sharedInstance().start()
         GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = ["3bee8640fd90f80580322bc31417d55b"]
         
+        let adUnits = AdUnits(
+                                bannerAdID: "",
+                                interstitialAdID: "",
+                                openAdID: "")
+        
         let configs = AdmobConfiguration()
+        configs.adUnit = adUnits
         configs.showLog = true
         configs.frequencyCapping = 4
         configs.impressionPercentage = 100

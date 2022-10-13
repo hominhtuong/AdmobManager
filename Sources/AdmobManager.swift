@@ -6,7 +6,6 @@
 //  Copyright © 2022 MTSOFT. All rights reserved.
 //
 
-import UIKit
 import GoogleMobileAds
 import MTSDK
 
