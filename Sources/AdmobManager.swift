@@ -140,7 +140,6 @@ public extension AdmobManager {
                     AdmobManager.shared.completionShowInterstitial = completion
                     AdmobManager.shared.interstitialHasBeenShow = true
                     ad.present(fromRootViewController: topViewController)
-                    AdmobManager.shared.lastDate = Date().timeIntervalSince1970
                     AdmobManager.shared.interstitialCounter += 1
                 } else {
                     if let completion = completion {
@@ -402,6 +401,7 @@ extension AdmobManager: GADFullScreenContentDelegate {
         }
         
         if AdmobManager.shared.interstitialHasBeenShow {
+            AdmobManager.shared.lastDate = Date().timeIntervalSince1970
             AdmobManager.shared.interstitial = nil
             AdmobManager.shared.loadInterstitial()
             AdmobManager.shared.interstitialHasBeenShow = false
@@ -439,6 +439,7 @@ extension AdmobManager: GADFullScreenContentDelegate {
         }
         
         if AdmobManager.shared.interstitialHasBeenShow {
+            AdmobManager.shared.lastDate = Date().timeIntervalSince1970
             AdmobManager.shared.interstitial = nil
             AdmobManager.shared.loadInterstitial()
             AdmobManager.shared.interstitialHasBeenShow = false

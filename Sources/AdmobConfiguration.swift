@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 open class AdmobConfiguration {
     public init() {}
@@ -16,7 +17,7 @@ open class AdmobConfiguration {
     public var adUnit: AdUnits = AdUnits()
     public var testDevices: [String] = [] {
         didSet {
-            
+            GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = testDevices
         }
     }
     
