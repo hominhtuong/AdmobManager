@@ -10,30 +10,30 @@ public class AdUnits {
     public init() {}
     public init(bannerAdID: String? = nil, interstitialAdID: String? = nil, openAdID: String? = nil, nativeAdID: String? = nil, rewardAdID: String? = nil) {
         if let bannerAdID = bannerAdID {
-            self._bannerAdUnitID = bannerAdID
+            self.bannerAdUnitID = bannerAdID
         }
         
         if let interstitialAdID = interstitialAdID {
-            self._interstitialAdUnitID = interstitialAdID
+            self.interstitialAdUnitID = interstitialAdID
         }
         
         if let openAdID = openAdID {
-            self._openAdUnitID = openAdID
+            self.openAdUnitID = openAdID
         }
         
         if let nativeAdID = nativeAdID {
-            self._nativeAdUnitID = nativeAdID
+            self.nativeAdUnitID = nativeAdID
         }
         
         if let rewardAdID = rewardAdID {
-            self._rewardAdUnitID = rewardAdID
+            self.rewardAdUnitID = rewardAdID
         }
     }
     
     //MARK: Variables
-    private var _interstitialAdUnitID = ""
-    private var _bannerAdUnitID = ""
-    private var _openAdUnitID = ""
-    private var _nativeAdUnitID = ""
-    private var _rewardAdUnitID = ""
+    public var interstitialAdUnitID = ""
+    public var bannerAdUnitID = ""
+    public var rewardAdUnitID = ""
+    public var openAdUnitID = ""
+    public var nativeAdUnitID = ""
 }

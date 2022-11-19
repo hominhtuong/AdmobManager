@@ -11,8 +11,7 @@ import GoogleMobileAds
 
 open class AdmobConfiguration {
     public init() {}
-    public init(enviroment: AdmobConfiguration.ENVIROMENT, adUnits: AdUnits) {
-        self.enviroment = enviroment
+    public init(adUnits: AdUnits) {
         self.adUnit = adUnits
     }
     
