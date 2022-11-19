@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 interstitialAdID: "",
                                 openAdID: "")
         
-        let configs = AdmobConfiguration(enviroment: .DEBUG, adUnits: adUnits)
+        let configs = AdmobConfiguration(adUnits: adUnits)
         configs.showLog = true
         configs.frequencyCapping = 4
         configs.impressionPercentage = 100
