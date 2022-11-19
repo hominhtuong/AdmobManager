@@ -11,9 +11,14 @@ import GoogleMobileAds
 
 open class AdmobConfiguration {
     public init() {}
+    public init(enviroment: AdmobConfiguration.ENVIROMENT, adUnits: AdUnits) {
+        self.enviroment = enviroment
+        self.adUnit = adUnits
+    }
     
     public var keyProversionStoraged: String = "kProversionStoraged"
     public var keyInterstitialCounterStoraged: String = "keyInterstitialCounterStoraged"
+    public var enviroment: AdmobConfiguration.ENVIROMENT = .DEBUG
     public var adUnit: AdUnits = AdUnits()
     public var testDevices: [String] = [] {
         didSet {
@@ -30,4 +35,9 @@ open class AdmobConfiguration {
     ///default is 100% - alway show
     public var impressionPercentage: Int = 100
     
+    public enum ENVIROMENT {
+        case DEBUG
+        case RELEASE
+    }
 }
+

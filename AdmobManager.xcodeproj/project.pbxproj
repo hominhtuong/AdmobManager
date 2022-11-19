@@ -10,7 +10,6 @@
 		4E4149F128F8967D005936B8 /* MTBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4149F028F8967D005936B8 /* MTBannerView.swift */; };
 		4E4149F528F89E2E005936B8 /* AdUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4149F428F89E2E005936B8 /* AdUnits.swift */; };
 		4E718FDD28F0324900AADABC /* AdmobManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E718FDB28F0324900AADABC /* AdmobManager.h */; };
-		4E718FDE28F0324900AADABC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E718FDC28F0324900AADABC /* Info.plist */; };
 		4E718FE728F0325500AADABC /* AdmobConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E718FE028F0325500AADABC /* AdmobConfiguration.swift */; };
 		4E718FE828F0325500AADABC /* NativeAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E718FE128F0325500AADABC /* NativeAdView.swift */; };
 		4E718FE928F0325500AADABC /* GADBannerViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E718FE228F0325500AADABC /* GADBannerViewExt.swift */; };
@@ -200,7 +199,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E718FDE28F0324900AADABC /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
