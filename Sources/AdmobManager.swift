@@ -451,6 +451,13 @@ extension AdmobManager: GADFullScreenContentDelegate {
             
             interstitialDelegate?.interstitialDidDismissScreen()
         }
+        
+        if AdmobManager.shared.rewardAdHasBeenShow {
+            
+            AdmobManager.shared.rewardedAd = nil
+            AdmobManager.shared.rewardAdHasBeenShow = false
+            rewardDelegate?.rewardAdDidDismissScreen()
+        }
     }
 }
 

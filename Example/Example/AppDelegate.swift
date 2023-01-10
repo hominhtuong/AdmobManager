@@ -22,7 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let adUnits = AdUnits(
                                 bannerAdID: "",
                                 interstitialAdID: "",
-                                openAdID: "")
+                                openAdID: "",
+                                rewardAdID: "ca-app-pub-3940256099942544/1712485313")
         
         let configs = AdmobConfiguration(adUnits: adUnits)
         configs.showLog = true
