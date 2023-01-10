@@ -62,14 +62,14 @@ public extension AdmobManagerNativeAdLoaderDelegate {
 public protocol AdmobManagerRewardDelegate {
     func rewardAdDidFailToReceiveAd(error: Error)
     func rewardAdDidPresentScreen()
-    func rewardAdDidDismissScreen()
+    func rewardAdDidDismissScreen(amount: Double)
 }
 
 //default implementation AdmobManagerRewardDelegate
 public extension AdmobManagerRewardDelegate {
     func rewardAdDidFailToReceiveAd(error: Error) {}
     func rewardAdDidPresentScreen() {}
-    func rewardAdDidDismissScreen() {}
+    func rewardAdDidDismissScreen(amount: Double) {}
 }
 
 

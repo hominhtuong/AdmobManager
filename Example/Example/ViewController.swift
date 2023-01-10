@@ -27,7 +27,6 @@ extension ViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         
         AdmobManager.shared.loadInterstitial()
-        AdmobManager.shared.loadRewardAds()
         
         AdmobManager.shared.interstitialDelegate = self
         AdmobManager.shared.openAdsDelegate = self
@@ -145,9 +144,15 @@ extension ViewController {
             $0.setTitleColor(.white, for: .normal)
             $0.backgroundColor = .random
             $0.handle {
-                AdmobManager.shared.showRewardAd { value in
-                    print("show Reward Ad thanh cong, coin: \(value)")
+                if AdmobManager.shared.rewardAdAvailable {
+                    AdmobManager.shared.showRewardAd { value in
+                        print("show Reward Ad thanh cong, coin: \(value)")
+                    }
+                } else {
+                    print("khong co ads, di load ad moi")
+                    AdmobManager.shared.loadRewardAds()
                 }
+                
             }
         }
         

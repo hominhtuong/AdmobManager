@@ -57,6 +57,13 @@ public class AdmobManager: NSObject {
     private var completionRewardAds: ((Double) -> Void)?
     private var rewardAdHasBeenShow: Bool = false
     private var rewardAdLoading: Bool = false
+    private var rewardAdAmount: Double = 0.0
+    
+    public var rewardAdAvailable: Bool {
+        get {
+            return self.rewardedAd != nil
+        }
+    }
 }
 
 //MARK: Configs
@@ -210,10 +217,8 @@ public extension AdmobManager {
                 AdmobManager.shared.rewardAdHasBeenShow = true
                 ad.present(fromRootViewController: topViewController, userDidEarnRewardHandler: {
                     let reward = ad.adReward
-                    if let completion = completion {
-                        completion(reward.amount.doubleValue)
-                        AdmobManager.shared.completionRewardAds = nil
-                    }
+                    self.rewardAdAmount += reward.amount.doubleValue
+                    AdmobLog("userDidEarn: \(self.rewardAdAmount)")
                 })
                 AdmobLog("showing reward ads....")
             }
@@ -405,7 +410,8 @@ extension AdmobManager: GADFullScreenContentDelegate {
             AdmobManager.shared.interstitial = nil
             AdmobManager.shared.loadInterstitial()
             AdmobManager.shared.interstitialHasBeenShow = false
-            if let completion =  AdmobManager.shared.completionShowInterstitial {
+            
+            if let completion = AdmobManager.shared.completionShowInterstitial {
                 completion()
                 AdmobLog("dismiss interstitial completion")
                 AdmobManager.shared.completionShowInterstitial = nil
@@ -418,7 +424,15 @@ extension AdmobManager: GADFullScreenContentDelegate {
             AdmobManager.shared.rewardedAd = nil
             AdmobManager.shared.loadRewardAds()
             AdmobManager.shared.rewardAdHasBeenShow = false
-            rewardDelegate?.rewardAdDidDismissScreen()
+            
+            if let completion = AdmobManager.shared.completionRewardAds {
+                completion(self.rewardAdAmount)
+                AdmobLog("dismiss reward completion")
+                AdmobManager.shared.completionRewardAds = nil
+            }
+            
+            rewardDelegate?.rewardAdDidDismissScreen(amount: self.rewardAdAmount)
+            self.rewardAdAmount = 0.0
         }
     }
 
@@ -453,10 +467,17 @@ extension AdmobManager: GADFullScreenContentDelegate {
         }
         
         if AdmobManager.shared.rewardAdHasBeenShow {
-            
             AdmobManager.shared.rewardedAd = nil
             AdmobManager.shared.rewardAdHasBeenShow = false
-            rewardDelegate?.rewardAdDidDismissScreen()
+            
+            if let completion = AdmobManager.shared.completionRewardAds {
+                completion(self.rewardAdAmount)
+                AdmobLog("dismiss reward completion")
+                AdmobManager.shared.completionRewardAds = nil
+            }
+            
+            rewardDelegate?.rewardAdDidDismissScreen(amount: self.rewardAdAmount)
+            self.rewardAdAmount = 0.0
         }
     }
 }

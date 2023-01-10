@@ -1,5 +1,5 @@
 PODS:
-  - AdmobManager (1.0.8):
+  - AdmobManager (1.0.9):
     - Google-Mobile-Ads-SDK
     - MTSDK
   - Google-Mobile-Ads-SDK (9.14.0):
@@ -70,7 +70,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AdmobManager: 255f9c4a2e42f58921d68eeeffea60aa84220a8a
+  AdmobManager: 34c0cd2661598e35c3f8eeb25052ef3b0edbebdd
   Google-Mobile-Ads-SDK: 4fe6304b771f8467d29978cb790ec1e56e646946
   GoogleAppMeasurement: c7d6fff39bf2d829587d74088d582e32d75133c3
   GoogleUserMessagingPlatform: 5f8b30daf181805317b6b985bb51c1ff3beca054
