@@ -83,11 +83,18 @@ public extension AdmobManager {
 
 //MARK: Interstitial
 public extension AdmobManager {
-    func loadInterstitial() {
+    func loadInterstitial(force: Bool = false) {
         if AdmobManager.shared.isProversion {
             AdmobLog("is proversion, return")
             return
         }
+        
+        if force {
+            AdmobManager.shared.interstitial = nil
+            AdmobManager.shared.interstitialLoading = false
+            AdmobLog("force load interstitial")
+        }
+        
         if AdmobManager.shared.interstitial != nil {
             AdmobLog("interstitial is avaiable to show, return")
             return
