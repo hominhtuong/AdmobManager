@@ -19,18 +19,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GADMobileAds.sharedInstance().start()
         GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = ["3bee8640fd90f80580322bc31417d55b"]
         
+//        let adUnits = AdUnits(
+//                                bannerAdID: "",
+//                                interstitialAdID: "",
+//                                openAdID: "",
+//                                rewardAdID: "ca-app-pub-3940256099942544/1712485313")
+        
         let adUnits = AdUnits(
                                 bannerAdID: "",
                                 interstitialAdID: "",
-                                openAdID: "",
-                                rewardAdID: "ca-app-pub-3940256099942544/1712485313")
+                                openAdIDs: ["type1", "type2", "type3"],
+                                rewardAdID: "ca-app-pub...")
         
-        let configs = AdmobConfiguration(adUnits: adUnits)
-        configs.showLog = true
-        configs.frequencyCapping = 4
-        configs.impressionPercentage = 100
-        
-        AdmobManager.shared.configs = configs
+        AdmobManager.shared.configs.adUnit = adUnits
+        AdmobManager.shared.configs.showLog = true
+        AdmobManager.shared.configs.frequencyCapping = 30
+        AdmobManager.shared.configs.impressionPercentage = 100
         AdmobManager.shared.loadOpenAd()
         
         return true

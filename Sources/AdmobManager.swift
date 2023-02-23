@@ -44,6 +44,7 @@ public class AdmobManager: NSObject {
     private var completionShowOpenAd: (() -> Void)?
     private var openAdHasBeenShow: Bool = false
     private var openAdLoading: Bool = false
+    private var openAdLoadingIndex: Int = 0
     
     private var interstitial: GADInterstitialAd?
     private var lastDate: TimeInterval = 0
@@ -252,16 +253,43 @@ public extension AdmobManager {
         }
         AdmobLog("request open ads")
         AdmobManager.shared.openAdLoading = true
-        GADAppOpenAd.load(withAdUnitID: AdmobManager.shared.configs.adUnit.openAdUnitID, request: GADRequest(), orientation: .portrait, completionHandler: { appOpenAd, error in
+        
+        let totalAds = AdmobManager.shared.configs.adUnit.openAdUnitIDs.count
+        
+        var openAdUnitID: String = AdmobManager.shared.configs.adUnit.openAdUnitID
+        if totalAds > AdmobManager.shared.openAdLoadingIndex {
+            openAdUnitID = AdmobManager.shared.configs.adUnit.openAdUnitIDs[AdmobManager.shared.openAdLoadingIndex]
+        }
+        
+        GADAppOpenAd.load(withAdUnitID: openAdUnitID, request: GADRequest(), orientation: .portrait, completionHandler: { appOpenAd, error in
             AdmobManager.shared.openAdLoading = false
+            
             if let error = error {
                 AdmobLog("Failed to load app open ad: \(error.localizedDescription)")
-                AdmobManager.shared.openAdsDelegate?.openAdDidFailToReceiveAd(error: error)
+                
+                if totalAds > 0 {
+                    if AdmobManager.shared.openAdLoadingIndex >= totalAds - 1 {
+                        AdmobManager.shared.openAdsDelegate?.openAdDidFailToReceiveAd(error: error)
+                    } else {
+                        AdmobManager.shared.openAdLoadingIndex += 1
+                        if AdmobManager.shared.openAdLoadingIndex >= totalAds {
+                            AdmobManager.shared.openAdLoadingIndex = totalAds - 1
+                        }
+                        AdmobLog("Continue load ad at \(AdmobManager.shared.openAdLoadingIndex)")
+                        AdmobManager.shared.loadOpenAd()
+                    }
+                } else {
+                    AdmobManager.shared.openAdsDelegate?.openAdDidFailToReceiveAd(error: error)
+                }
+                
                 return
             }
-            self.appOpenAd = appOpenAd
-            self.appOpenAd?.fullScreenContentDelegate = self
-            AdmobManager.shared.openAdHasBeenShow = false
+            if let appOpenAd = appOpenAd {
+                self.appOpenAd = appOpenAd
+                self.appOpenAd?.fullScreenContentDelegate = self
+                AdmobManager.shared.openAdHasBeenShow = false
+                AdmobManager.shared.openAdLoadingIndex = 0
+            }
         })
     }
     

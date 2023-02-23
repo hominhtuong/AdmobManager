@@ -8,6 +8,23 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+```swift
+import AdmobManager
+
+        let adUnits = AdUnits(
+                                bannerAdID: "ca-app-pub...",
+                                interstitialAdID: "ca-app-pub...",
+                                openAdIDs: ["type1", "type2", "type3"],
+                                rewardAdID: "ca-app-pub...")
+        
+        AdmobManager.shared.configs.adUnit = adUnits
+        AdmobManager.shared.configs.showLog = true
+        AdmobManager.shared.configs.frequencyCapping = 30
+        AdmobManager.shared.configs.impressionPercentage = 100
+        AdmobManager.shared.loadOpenAd()
+```
+
+
 ## Requirements
 
 ## Installation
