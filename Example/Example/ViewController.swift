@@ -200,6 +200,10 @@ extension ViewController: AdmobManagerNativeAdLoaderDelegate {
     func adLoaderDidFinishLoading(_ adLoader: GADAdLoader) {
         print("adLoaderDidFinishLoading")
     }
+    
+    func nativeAdResponseInfo(adValue: GADAdValue) {
+        print("nativeAdResponseInfo: \(adValue)")
+    }
 }
 
 //MARK: AdmobManagerInterstitialDelegate
@@ -214,6 +218,10 @@ extension ViewController: AdmobManagerInterstitialDelegate {
     
     func interstitialDidDismissScreen() {
         print("interstitialDidDismissScreen")
+    }
+    
+    func interstitialResponseInfo(adValue: GADAdValue) {
+        print("interstitialResponseInfo: \(adValue)")
     }
 }
 
@@ -230,6 +238,10 @@ extension ViewController: AdmobManagerOpenAdsDelegate {
     func openAdDidDismissScreen() {
         print("openAdsDidDismissScreen")
     }
+    
+    func openAdResponseInfo(adValue: GADAdValue) {
+        print("openAdResponseInfo: \(adValue)")
+    }
 }
 
 //MARK: AdmobManagerRewardDelegate
@@ -244,6 +256,10 @@ extension ViewController: AdmobManagerRewardDelegate {
     
     func rewardAdDidDismissScreen() {
         print("rewardAdDidDismissScreen")
+    }
+    
+    func rewardAdResponseInfo(adValue: GADAdValue) {
+        print("rewardAdResponseInfo: \(adValue)")
     }
 }
 
@@ -269,5 +285,8 @@ extension ViewController: AdmobManagerBannerDelegate {
         print("adViewDidDismissScreen")
     }
     
+    func adViewResponseInfo(adValue: GADAdValue) {
+        print("adViewResponseInfo: \(adValue)")
+    }
 }
 

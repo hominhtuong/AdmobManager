@@ -16,6 +16,7 @@ public protocol AdmobManagerBannerDelegate {
     func adViewWillPresentScreen()
     func adViewWillDismissScreen()
     func adViewDidDismissScreen()
+    func adViewResponseInfo(adValue: GADAdValue)
 }
 
 //default implementation AdmobManagerBannerDelegate
@@ -25,6 +26,7 @@ public extension AdmobManagerBannerDelegate {
     func adViewWillPresentScreen() {}
     func adViewWillDismissScreen() {}
     func adViewDidDismissScreen() {}
+    func adViewResponseInfo(adValue: GADAdValue) {}
 }
 
 //MARK: - Interstitial Ads
@@ -32,6 +34,8 @@ public protocol AdmobManagerInterstitialDelegate {
     func interstitialDidFailToReceiveAd(error: Error)
     func interstitialDidPresentScreen()
     func interstitialDidDismissScreen()
+    
+    func interstitialResponseInfo(adValue: GADAdValue)
 }
 
 //default implementation AdmobManagerInterstitialDelegate
@@ -39,6 +43,7 @@ public extension AdmobManagerInterstitialDelegate {
     func interstitialDidFailToReceiveAd(error: Error) {}
     func interstitialDidPresentScreen() {}
     func interstitialDidDismissScreen() {}
+    func interstitialResponseInfo(adValue: GADAdValue) {}
 }
 
 //MARK: - Native Ads
@@ -47,6 +52,7 @@ public protocol AdmobManagerNativeAdLoaderDelegate {
     func nativeDidReceiveAd(_ adLoader: GADAdLoader,
                             didReceive nativeAd: GADNativeAd)
     func adLoaderDidFinishLoading(_ adLoader: GADAdLoader)
+    func nativeAdResponseInfo(adValue: GADAdValue)
 }
 
 //default implementation AdmobManagerNativeAdLoaderDelegate
@@ -55,6 +61,7 @@ public extension AdmobManagerNativeAdLoaderDelegate {
     func nativeDidReceiveAd(_ adLoader: GADAdLoader,
                             didReceive nativeAd: GADNativeAd) {}
     func adLoaderDidFinishLoading(_ adLoader: GADAdLoader) {}
+    func nativeAdResponseInfo(adValue: GADAdValue) {}
 }
 
 
@@ -63,6 +70,7 @@ public protocol AdmobManagerRewardDelegate {
     func rewardAdDidFailToReceiveAd(error: Error)
     func rewardAdDidPresentScreen()
     func rewardAdDidDismissScreen(amount: Double)
+    func rewardAdResponseInfo(adValue: GADAdValue)
 }
 
 //default implementation AdmobManagerRewardDelegate
@@ -70,6 +78,7 @@ public extension AdmobManagerRewardDelegate {
     func rewardAdDidFailToReceiveAd(error: Error) {}
     func rewardAdDidPresentScreen() {}
     func rewardAdDidDismissScreen(amount: Double) {}
+    func rewardAdResponseInfo(adValue: GADAdValue) {}
 }
 
 
@@ -78,6 +87,7 @@ public protocol AdmobManagerOpenAdsDelegate {
     func openAdDidFailToReceiveAd(error: Error)
     func openAdDidPresentScreen()
     func openAdDidDismissScreen()
+    func openAdResponseInfo(adValue: GADAdValue)
 }
 
 //default implementation AdmobManagerInterestialDelegate
@@ -85,4 +95,5 @@ public extension AdmobManagerOpenAdsDelegate {
     func openAdDidFailToReceiveAd(error: Error) {}
     func openAdDidPresentScreen() {}
     func openAdDidDismissScreen() {}
+    func openAdResponseInfo(adValue: GADAdValue) {}
 }

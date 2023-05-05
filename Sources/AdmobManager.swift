@@ -107,13 +107,18 @@ public extension AdmobManager {
         AdmobManager.shared.interstitialLoading = true
         AdmobLog("requesting interstitial.....")
         GADInterstitialAd.load(withAdUnitID: configs.adUnit.interstitialAdUnitID, request: GADRequest(), completionHandler: { [self] ad, error in
+            
             AdmobManager.shared.interstitialLoading = false
             if let error = error {
                 AdmobLog("Failed to load interstitial ad with error: \(error.localizedDescription)")
                 AdmobManager.shared.interstitialDelegate?.interstitialDidFailToReceiveAd(error: error)
                 return
             }
+            
             AdmobManager.shared.interstitial = ad
+            AdmobManager.shared.interstitial?.paidEventHandler = { value in
+                self.interstitialDelegate?.interstitialResponseInfo(adValue: value)
+            }
             AdmobManager.shared.interstitial?.fullScreenContentDelegate = self
             AdmobManager.shared.interstitialHasBeenShow = false
         })
@@ -206,6 +211,9 @@ public extension AdmobManager {
                     return
                 }
                 AdmobManager.shared.rewardedAd = ad
+                AdmobManager.shared.rewardedAd?.paidEventHandler =  { value in
+                    self.rewardDelegate?.rewardAdResponseInfo(adValue: value)
+                }
                 AdmobManager.shared.rewardedAd?.fullScreenContentDelegate = self
                 AdmobManager.shared.rewardAdHasBeenShow = false
         })
@@ -286,6 +294,9 @@ public extension AdmobManager {
             }
             if let appOpenAd = appOpenAd {
                 self.appOpenAd = appOpenAd
+                self.appOpenAd?.paidEventHandler = { value in
+                    self.openAdsDelegate?.openAdResponseInfo(adValue: value)
+                }
                 self.appOpenAd?.fullScreenContentDelegate = self
                 AdmobManager.shared.openAdHasBeenShow = false
                 AdmobManager.shared.openAdLoadingIndex = 0
@@ -379,6 +390,10 @@ public extension AdmobManager {
 extension AdmobManager: GADBannerViewDelegate {
     public func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
         AdmobLog("bannerViewDidReceiveAd")
+        
+        bannerView.paidEventHandler = { value in
+            AdmobManager.shared.bannerDelegate?.adViewResponseInfo(adValue: value)
+        }
         AdmobManager.shared.bannerDelegate?.adViewDidReceiveAd()
     }
     
@@ -526,6 +541,9 @@ extension AdmobManager: GADNativeAdLoaderDelegate {
     public func adLoader(_ adLoader: GADAdLoader,
                     didReceive nativeAd: GADNativeAd) {
         AdmobLog("adLoader.adUnitID + \(nativeAd.responseInfo)")
+        nativeAd.paidEventHandler = { value in
+            self.adLoaderDelegate?.nativeAdResponseInfo(adValue: value)
+        }
         adLoaderDelegate?.nativeDidReceiveAd(adLoader, didReceive: nativeAd)
     }
 

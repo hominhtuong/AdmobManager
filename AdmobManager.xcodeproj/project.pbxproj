@@ -17,7 +17,7 @@
 		4E718FEB28F0325500AADABC /* MTLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E718FE428F0325500AADABC /* MTLog.swift */; };
 		4E718FEC28F0325500AADABC /* AdmobProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E718FE528F0325500AADABC /* AdmobProtocols.swift */; };
 		4E718FED28F0325500AADABC /* AdmobManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E718FE628F0325500AADABC /* AdmobManager.swift */; };
-		5F21BAF2295ABC40E0BC833F /* Pods_AdmobManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCDB99EDD2AA11A7C6EDFDB2 /* Pods_AdmobManager.framework */; };
+		DE155AAED4C6E03B679F6534 /* Pods_AdmobManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C3C01722BE3862620AB869 /* Pods_AdmobManager.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,8 +34,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		33B126D757745E77937FA58F /* Pods-MTAdmob.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTAdmob.debug.xcconfig"; path = "Target Support Files/Pods-MTAdmob/Pods-MTAdmob.debug.xcconfig"; sourceTree = "<group>"; };
-		4822AFAC98CFA1B6A65303EF /* Pods-AdmobManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdmobManager.debug.xcconfig"; path = "Target Support Files/Pods-AdmobManager/Pods-AdmobManager.debug.xcconfig"; sourceTree = "<group>"; };
+		1038D34A7AA7BEBDFC0AE779 /* Pods-AdmobManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdmobManager.debug.xcconfig"; path = "Target Support Files/Pods-AdmobManager/Pods-AdmobManager.debug.xcconfig"; sourceTree = "<group>"; };
+		43C3C01722BE3862620AB869 /* Pods_AdmobManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdmobManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E4149F028F8967D005936B8 /* MTBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTBannerView.swift; sourceTree = "<group>"; };
 		4E4149F428F89E2E005936B8 /* AdUnits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdUnits.swift; sourceTree = "<group>"; };
 		4E718FDB28F0324900AADABC /* AdmobManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdmobManager.h; sourceTree = "<group>"; };
@@ -48,9 +48,7 @@
 		4E718FE528F0325500AADABC /* AdmobProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdmobProtocols.swift; sourceTree = "<group>"; };
 		4E718FE628F0325500AADABC /* AdmobManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdmobManager.swift; sourceTree = "<group>"; };
 		4E9F5C3D28EF40F50094A4A3 /* AdmobManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdmobManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		74063864A6350AE278DC4FB8 /* Pods-AdmobManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdmobManager.release.xcconfig"; path = "Target Support Files/Pods-AdmobManager/Pods-AdmobManager.release.xcconfig"; sourceTree = "<group>"; };
-		DCDB99EDD2AA11A7C6EDFDB2 /* Pods_AdmobManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdmobManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1A83AAC585040BBF5BA328B /* Pods-MTAdmob.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTAdmob.release.xcconfig"; path = "Target Support Files/Pods-MTAdmob/Pods-MTAdmob.release.xcconfig"; sourceTree = "<group>"; };
+		B37BD75EBB63684933A3ECED /* Pods-AdmobManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdmobManager.release.xcconfig"; path = "Target Support Files/Pods-AdmobManager/Pods-AdmobManager.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,20 +56,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F21BAF2295ABC40E0BC833F /* Pods_AdmobManager.framework in Frameworks */,
+				DE155AAED4C6E03B679F6534 /* Pods_AdmobManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07CDAA43A2A812C3C1CF4C97 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				43C3C01722BE3862620AB869 /* Pods_AdmobManager.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		423CB572A901481B306C4F1E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				33B126D757745E77937FA58F /* Pods-MTAdmob.debug.xcconfig */,
-				E1A83AAC585040BBF5BA328B /* Pods-MTAdmob.release.xcconfig */,
-				4822AFAC98CFA1B6A65303EF /* Pods-AdmobManager.debug.xcconfig */,
-				74063864A6350AE278DC4FB8 /* Pods-AdmobManager.release.xcconfig */,
+				1038D34A7AA7BEBDFC0AE779 /* Pods-AdmobManager.debug.xcconfig */,
+				B37BD75EBB63684933A3ECED /* Pods-AdmobManager.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -108,7 +112,7 @@
 				4E718FDA28F0324900AADABC /* AdmobManager */,
 				4E9F5C3E28EF40F50094A4A3 /* Products */,
 				423CB572A901481B306C4F1E /* Pods */,
-				5C20F647FB3342FB81BBCA7A /* Frameworks */,
+				07CDAA43A2A812C3C1CF4C97 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,14 +122,6 @@
 				4E9F5C3D28EF40F50094A4A3 /* AdmobManager.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		5C20F647FB3342FB81BBCA7A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				DCDB99EDD2AA11A7C6EDFDB2 /* Pods_AdmobManager.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,7 +142,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4E9F5C4428EF40F50094A4A3 /* Build configuration list for PBXNativeTarget "AdmobManager" */;
 			buildPhases = (
-				3096EECDB1E08CDFAE2E5151 /* [CP] Check Pods Manifest.lock */,
+				A41C9BFC66E37D060525DF06 /* [CP] Check Pods Manifest.lock */,
 				4E9F5C3828EF40F50094A4A3 /* Headers */,
 				4E9F5C3928EF40F50094A4A3 /* Sources */,
 				4E9F5C3A28EF40F50094A4A3 /* Frameworks */,
@@ -205,7 +201,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3096EECDB1E08CDFAE2E5151 /* [CP] Check Pods Manifest.lock */ = {
+		A41C9BFC66E37D060525DF06 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -373,12 +369,12 @@
 		};
 		4E9F5C4528EF40F50094A4A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4822AFAC98CFA1B6A65303EF /* Pods-AdmobManager.debug.xcconfig */;
+			baseConfigurationReference = 1038D34A7AA7BEBDFC0AE779 /* Pods-AdmobManager.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = F6N9NQ9NJY;
+				DEVELOPMENT_TEAM = A9QHV3NCBJ;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -408,12 +404,12 @@
 		};
 		4E9F5C4628EF40F50094A4A3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 74063864A6350AE278DC4FB8 /* Pods-AdmobManager.release.xcconfig */;
+			baseConfigurationReference = B37BD75EBB63684933A3ECED /* Pods-AdmobManager.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = F6N9NQ9NJY;
+				DEVELOPMENT_TEAM = A9QHV3NCBJ;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

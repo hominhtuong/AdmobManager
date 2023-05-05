@@ -19,17 +19,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GADMobileAds.sharedInstance().start()
         GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = ["3bee8640fd90f80580322bc31417d55b"]
         
+        let adUnits = AdUnits(
+                                bannerAdID: "ca-app-pub-3940256099942544/2934735716",
+                                interstitialAdID: "ca-app-pub-3940256099942544/4411468910",
+                                openAdID: "ca-app-pub-3940256099942544/5662855259",
+                                nativeAdID: "ca-app-pub-3940256099942544/3986624511",
+                                rewardAdID: "ca-app-pub-3940256099942544/1712485313")
+        
 //        let adUnits = AdUnits(
 //                                bannerAdID: "",
 //                                interstitialAdID: "",
-//                                openAdID: "",
-//                                rewardAdID: "ca-app-pub-3940256099942544/1712485313")
-        
-        let adUnits = AdUnits(
-                                bannerAdID: "",
-                                interstitialAdID: "",
-                                openAdIDs: ["type1", "type2", "type3"],
-                                rewardAdID: "ca-app-pub...")
+//                                openAdIDs: ["type1", "type2", "type3"],
+//                                rewardAdID: "ca-app-pub...")
         
         AdmobManager.shared.configs.adUnit = adUnits
         AdmobManager.shared.configs.showLog = true
