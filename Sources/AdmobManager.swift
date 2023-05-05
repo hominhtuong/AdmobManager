@@ -116,9 +116,6 @@ public extension AdmobManager {
             }
             
             AdmobManager.shared.interstitial = ad
-            AdmobManager.shared.interstitial?.paidEventHandler = { value in
-                self.interstitialDelegate?.interstitialResponseInfo(adValue: value)
-            }
             AdmobManager.shared.interstitial?.fullScreenContentDelegate = self
             AdmobManager.shared.interstitialHasBeenShow = false
         })
@@ -211,9 +208,6 @@ public extension AdmobManager {
                     return
                 }
                 AdmobManager.shared.rewardedAd = ad
-                AdmobManager.shared.rewardedAd?.paidEventHandler =  { value in
-                    self.rewardDelegate?.rewardAdResponseInfo(adValue: value)
-                }
                 AdmobManager.shared.rewardedAd?.fullScreenContentDelegate = self
                 AdmobManager.shared.rewardAdHasBeenShow = false
         })
@@ -294,9 +288,6 @@ public extension AdmobManager {
             }
             if let appOpenAd = appOpenAd {
                 self.appOpenAd = appOpenAd
-                self.appOpenAd?.paidEventHandler = { value in
-                    self.openAdsDelegate?.openAdResponseInfo(adValue: value)
-                }
                 self.appOpenAd?.fullScreenContentDelegate = self
                 AdmobManager.shared.openAdHasBeenShow = false
                 AdmobManager.shared.openAdLoadingIndex = 0
@@ -390,9 +381,8 @@ public extension AdmobManager {
 extension AdmobManager: GADBannerViewDelegate {
     public func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
         AdmobLog("bannerViewDidReceiveAd")
-        
         bannerView.paidEventHandler = { value in
-            AdmobManager.shared.bannerDelegate?.adViewResponseInfo(adValue: value)
+            AdmobManager.shared.bannerDelegate?.adViewValue(adValue: value)
         }
         AdmobManager.shared.bannerDelegate?.adViewDidReceiveAd()
     }
@@ -426,16 +416,26 @@ extension AdmobManager: GADFullScreenContentDelegate {
         
         if AdmobManager.shared.openAdHasBeenShow {
             AdmobLog("open ads Will Present Full Screen Content")
+            AdmobManager.shared.appOpenAd?.paidEventHandler = { value in
+                self.openAdsDelegate?.openAdValue(adValue: value)
+            }
+            
             AdmobManager.shared.openAdsDelegate?.openAdDidPresentScreen()
         }
         
         if AdmobManager.shared.interstitialHasBeenShow {
             AdmobLog("interstitial Will Present Full Screen Content")
+            AdmobManager.shared.interstitial?.paidEventHandler = { value in
+                self.interstitialDelegate?.interstitialValue(adValue: value)
+            }
             AdmobManager.shared.interstitialDelegate?.interstitialDidPresentScreen()
         }
         
         if AdmobManager.shared.rewardAdHasBeenShow {
             AdmobLog("reward ads Will Present Full Screen Content")
+            AdmobManager.shared.rewardedAd?.paidEventHandler =  { value in
+                self.rewardDelegate?.rewardAdValue(adValue: value)
+            }
             AdmobManager.shared.rewardDelegate?.rewardAdDidPresentScreen()
         }
     }
@@ -490,6 +490,8 @@ extension AdmobManager: GADFullScreenContentDelegate {
     public func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         AdmobLog("adDidDismissFullScreenContent")
         
+        
+        
         if AdmobManager.shared.openAdHasBeenShow {
             AdmobManager.shared.appOpenAd = nil
             AdmobManager.shared.openAdHasBeenShow = false
@@ -538,11 +540,12 @@ extension AdmobManager: GADNativeAdLoaderDelegate {
         adLoaderDelegate?.nativeDidFailToReceiveAd(error: error)
     }
     
+    
     public func adLoader(_ adLoader: GADAdLoader,
                     didReceive nativeAd: GADNativeAd) {
-        AdmobLog("adLoader.adUnitID + \(nativeAd.responseInfo)")
+        AdmobLog("adLoader didReceive + \(nativeAd.responseInfo)")
         nativeAd.paidEventHandler = { value in
-            self.adLoaderDelegate?.nativeAdResponseInfo(adValue: value)
+            self.adLoaderDelegate?.nativeAdValue(adValue: value)
         }
         adLoaderDelegate?.nativeDidReceiveAd(adLoader, didReceive: nativeAd)
     }

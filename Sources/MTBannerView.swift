@@ -10,12 +10,13 @@ import GoogleMobileAds
 
 //MARK: Auto add adUnitID and load request
 public class MTBannerView: GADBannerView {
+    
     public func configuration(adUnitID: String? = nil, rootViewController: UIViewController? = nil) {
         self.adUnitID = adUnitID ?? AdmobManager.shared.configs.adUnit.bannerAdUnitID
         if let viewcontroller = rootViewController {
             self.rootViewController = viewcontroller
         }
-        
+        self.delegate = AdmobManager.shared
         self.load(GADRequest())
     }
 }

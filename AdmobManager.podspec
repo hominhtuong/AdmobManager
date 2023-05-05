@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'AdmobManager'
-  s.version          = '1.1.2'
+  s.version          = '1.1.3'
   s.summary          = 'AdmobManager for iOS'
   s.swift_version = ['5.1', '5.2', '5.3', '5.4', '5.5', '5.6', '5.7']
   s.description  = <<-DESC
