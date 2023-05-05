@@ -201,8 +201,8 @@ extension ViewController: AdmobManagerNativeAdLoaderDelegate {
         print("adLoaderDidFinishLoading")
     }
     
-    func nativeAdValue(adValue: GADAdValue) {
-        print("nativeAdValue: \(adValue)")
+    func nativeAdInfo(adValue: GADAdValue, info: GADResponseInfo?) {
+        print("nativeAdInfo: \(adValue), info: \(String(describing: info))")
     }
 }
 
@@ -220,8 +220,8 @@ extension ViewController: AdmobManagerInterstitialDelegate {
         print("interstitialDidDismissScreen")
     }
     
-    func interstitialValue(adValue: GADAdValue) {
-        print("interstitialValue: \(adValue)")
+    func interstitialInfo(adValue: GADAdValue, info: GADResponseInfo?) {
+        print("interstitialInfo: \(adValue), info: \(String(describing: info))")
     }
 }
 
@@ -239,8 +239,8 @@ extension ViewController: AdmobManagerOpenAdsDelegate {
         print("openAdsDidDismissScreen")
     }
     
-    func openAdValue(adValue: GADAdValue) {
-        print("openAdValue: \(adValue)")
+    func openAdInfo(adValue: GADAdValue, info: GADResponseInfo?) {
+        print("openAdInfo: \(adValue), info: \(String(describing: info))")
     }
 }
 
@@ -258,8 +258,8 @@ extension ViewController: AdmobManagerRewardDelegate {
         print("rewardAdDidDismissScreen")
     }
     
-    func rewardAdValue(adValue: GADAdValue) {
-        print("rewardAdValue: \(adValue)")
+    func rewardAdInfo(adValue: GADAdValue, info: GADResponseInfo?) {
+        print("rewardAdInfo: \(adValue), info: \(String(describing: info))")
     }
 }
 
@@ -285,8 +285,8 @@ extension ViewController: AdmobManagerBannerDelegate {
         print("adViewDidDismissScreen")
     }
     
-    func adViewValue(adValue: GADAdValue) {
-        print("adViewValue: \(adValue)")
+    func adViewInfo(adValue: GADAdValue, info: GADResponseInfo?) {
+        print("adViewInfo: \(adValue), info: \(String(describing: info))")
     }
 }
 

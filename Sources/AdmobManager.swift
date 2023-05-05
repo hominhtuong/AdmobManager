@@ -382,7 +382,7 @@ extension AdmobManager: GADBannerViewDelegate {
     public func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
         AdmobLog("bannerViewDidReceiveAd")
         bannerView.paidEventHandler = { value in
-            AdmobManager.shared.bannerDelegate?.adViewValue(adValue: value)
+            AdmobManager.shared.bannerDelegate?.adViewInfo(adValue: value, info: bannerView.responseInfo)
         }
         AdmobManager.shared.bannerDelegate?.adViewDidReceiveAd()
     }
@@ -417,7 +417,7 @@ extension AdmobManager: GADFullScreenContentDelegate {
         if AdmobManager.shared.openAdHasBeenShow {
             AdmobLog("open ads Will Present Full Screen Content")
             AdmobManager.shared.appOpenAd?.paidEventHandler = { value in
-                self.openAdsDelegate?.openAdValue(adValue: value)
+                self.openAdsDelegate?.openAdInfo(adValue: value, info: AdmobManager.shared.appOpenAd?.responseInfo)
             }
             
             AdmobManager.shared.openAdsDelegate?.openAdDidPresentScreen()
@@ -426,7 +426,7 @@ extension AdmobManager: GADFullScreenContentDelegate {
         if AdmobManager.shared.interstitialHasBeenShow {
             AdmobLog("interstitial Will Present Full Screen Content")
             AdmobManager.shared.interstitial?.paidEventHandler = { value in
-                self.interstitialDelegate?.interstitialValue(adValue: value)
+                self.interstitialDelegate?.interstitialInfo(adValue: value, info: AdmobManager.shared.interstitial?.responseInfo)
             }
             AdmobManager.shared.interstitialDelegate?.interstitialDidPresentScreen()
         }
@@ -434,7 +434,7 @@ extension AdmobManager: GADFullScreenContentDelegate {
         if AdmobManager.shared.rewardAdHasBeenShow {
             AdmobLog("reward ads Will Present Full Screen Content")
             AdmobManager.shared.rewardedAd?.paidEventHandler =  { value in
-                self.rewardDelegate?.rewardAdValue(adValue: value)
+                self.rewardDelegate?.rewardAdInfo(adValue: value, info: AdmobManager.shared.rewardedAd?.responseInfo)
             }
             AdmobManager.shared.rewardDelegate?.rewardAdDidPresentScreen()
         }
@@ -545,7 +545,7 @@ extension AdmobManager: GADNativeAdLoaderDelegate {
                     didReceive nativeAd: GADNativeAd) {
         AdmobLog("adLoader didReceive + \(nativeAd.responseInfo)")
         nativeAd.paidEventHandler = { value in
-            self.adLoaderDelegate?.nativeAdValue(adValue: value)
+            self.adLoaderDelegate?.nativeAdInfo(adValue: value, info: nativeAd.responseInfo)
         }
         adLoaderDelegate?.nativeDidReceiveAd(adLoader, didReceive: nativeAd)
     }

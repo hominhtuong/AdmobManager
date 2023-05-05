@@ -10,6 +10,7 @@ import GoogleMobileAds
 
 public extension GADBannerView {
     func load() {
+        self.delegate = AdmobManager.shared
         let request = GADRequest()
         self.load(request)
     }
