@@ -84,9 +84,12 @@ public extension AdmobManager {
 
 //MARK: Interstitial
 public extension AdmobManager {
-    func loadInterstitial(force: Bool = false) {
+    func loadInterstitial(force: Bool = false, completion: ((String?) -> Void)? = nil) {
         if AdmobManager.shared.isProversion {
             AdmobLog("is proversion, return")
+            if let completion = completion {
+                completion("is proversion")
+            }
             return
         }
         
@@ -98,26 +101,39 @@ public extension AdmobManager {
         
         if AdmobManager.shared.interstitial != nil {
             AdmobLog("interstitial is avaiable to show, return")
+            if let completion = completion {
+                completion("interstitial is avaiable")
+            }
             return
         }
         if AdmobManager.shared.interstitialLoading {
             AdmobLog("interstitial is loading, return")
+            if let completion = completion {
+                completion("interstitial is loading")
+            }
             return
         }
         AdmobManager.shared.interstitialLoading = true
         AdmobLog("requesting interstitial.....")
         GADInterstitialAd.load(withAdUnitID: configs.adUnit.interstitialAdUnitID, request: GADRequest(), completionHandler: { [self] ad, error in
-            
             AdmobManager.shared.interstitialLoading = false
+            
             if let error = error {
                 AdmobLog("Failed to load interstitial ad with error: \(error.localizedDescription)")
                 AdmobManager.shared.interstitialDelegate?.interstitialDidFailToReceiveAd(error: error)
+                if let completion = completion {
+                    completion(error.localizedDescription)
+                }
                 return
+            } else {
+                if let completion = completion {
+                    completion(nil)
+                }
+                
+                AdmobManager.shared.interstitial = ad
+                AdmobManager.shared.interstitial?.fullScreenContentDelegate = self
+                AdmobManager.shared.interstitialHasBeenShow = false
             }
-            
-            AdmobManager.shared.interstitial = ad
-            AdmobManager.shared.interstitial?.fullScreenContentDelegate = self
-            AdmobManager.shared.interstitialHasBeenShow = false
         })
     }
     
@@ -244,13 +260,19 @@ public extension AdmobManager {
 
 //MARK: Open Ads
 public extension AdmobManager {
-    func loadOpenAd() {
+    func loadOpenAd(completion: ((String?) -> Void)? = nil) {
         if AdmobManager.shared.isProversion {
             AdmobLog("is proversion, return")
+            if let completion = completion {
+                completion("is proversion")
+            }
             return
         }
         if AdmobManager.shared.appOpenAd != nil {
             AdmobLog("openads is avaiable to show, return")
+            if let completion = completion {
+                completion("openads is avaiable to show")
+            }
             return
         }
         AdmobLog("request open ads")
@@ -268,7 +290,9 @@ public extension AdmobManager {
             
             if let error = error {
                 AdmobLog("Failed to load app open ad: \(error.localizedDescription)")
-                
+                if let completion = completion {
+                    completion(error.localizedDescription)
+                }
                 if totalAds > 0 {
                     if AdmobManager.shared.openAdLoadingIndex >= totalAds - 1 {
                         AdmobManager.shared.openAdsDelegate?.openAdDidFailToReceiveAd(error: error)
@@ -291,6 +315,9 @@ public extension AdmobManager {
                 self.appOpenAd?.fullScreenContentDelegate = self
                 AdmobManager.shared.openAdHasBeenShow = false
                 AdmobManager.shared.openAdLoadingIndex = 0
+                if let completion = completion {
+                    completion(nil)
+                }
             }
         })
     }
