@@ -52,11 +52,34 @@ public class AdUnits {
         }
     }
     
+    public init(bannerAdID: String? = nil, interstitialAdIDs: [String]? = nil, openAdIDs: [String]? = nil, nativeAdID: String? = nil, rewardAdID: String? = nil) {
+        if let bannerAdID = bannerAdID {
+            self.bannerAdUnitID = bannerAdID
+        }
+        
+        if let interstitialAdIDs = interstitialAdIDs {
+            self.interstitialAdUnitIDs = interstitialAdIDs
+        }
+        
+        if let openAdIDs = openAdIDs {
+            self.openAdUnitIDs = openAdIDs
+        }
+        
+        if let nativeAdID = nativeAdID {
+            self.nativeAdUnitID = nativeAdID
+        }
+        
+        if let rewardAdID = rewardAdID {
+            self.rewardAdUnitID = rewardAdID
+        }
+    }
+    
     //MARK: Variables
-    public var interstitialAdUnitID:    String = ""
-    public var bannerAdUnitID:          String = ""
-    public var rewardAdUnitID:          String = ""
-    public var openAdUnitID:            String = ""
-    public var nativeAdUnitID:          String = ""
-    public var openAdUnitIDs:           [String] = []
+    public var interstitialAdUnitID:             String = ""
+    public var bannerAdUnitID:                   String = ""
+    public var rewardAdUnitID:                   String = ""
+    public var openAdUnitID:                     String = ""
+    public var nativeAdUnitID:                   String = ""
+    public var interstitialAdUnitIDs:            [String] = []
+    public var openAdUnitIDs:                    [String] = []
 }

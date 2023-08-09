@@ -51,6 +51,7 @@ public class AdmobManager: NSObject {
     private var interstitialHasBeenShow: Bool = false
     private var interstitialLoading: Bool = false
     private var completionShowInterstitial: (() -> Void)?
+    private var interstitialLoadingIndex: Int = 0
     
     private var adLoader: GADAdLoader!
     
@@ -114,22 +115,47 @@ public extension AdmobManager {
             return
         }
         AdmobManager.shared.interstitialLoading = true
+        
+        let totalAds = AdmobManager.shared.configs.adUnit.interstitialAdUnitIDs.count
+        
+        var _interstitialAdUnitID: String = AdmobManager.shared.configs.adUnit.interstitialAdUnitID
+        if totalAds > AdmobManager.shared.interstitialLoadingIndex {
+            _interstitialAdUnitID = AdmobManager.shared.configs.adUnit.interstitialAdUnitIDs[AdmobManager.shared.interstitialLoadingIndex]
+        }
+        
         AdmobLog("requesting interstitial.....")
-        GADInterstitialAd.load(withAdUnitID: configs.adUnit.interstitialAdUnitID, request: GADRequest(), completionHandler: { [self] ad, error in
+        GADInterstitialAd.load(withAdUnitID: _interstitialAdUnitID, request: GADRequest(), completionHandler: { [self] ad, error in
             AdmobManager.shared.interstitialLoading = false
             
             if let error = error {
-                AdmobLog("Failed to load interstitial ad with error: \(error.localizedDescription)")
-                AdmobManager.shared.interstitialDelegate?.interstitialDidFailToReceiveAd(error: error)
-                if let completion = completion {
-                    completion(error.localizedDescription)
+                if totalAds > 0 {
+                    if AdmobManager.shared.interstitialLoadingIndex >= totalAds - 1 {
+                        AdmobLog("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                        AdmobManager.shared.interstitialDelegate?.interstitialDidFailToReceiveAd(error: error)
+                        if let completion = completion {
+                            completion(error.localizedDescription)
+                        }
+                    } else {
+                        AdmobManager.shared.interstitialLoadingIndex += 1
+                        if AdmobManager.shared.interstitialLoadingIndex >= totalAds {
+                            AdmobManager.shared.interstitialLoadingIndex = totalAds - 1
+                        }
+                        AdmobLog("Continue load interstitial at \(AdmobManager.shared.interstitialLoadingIndex)")
+                        AdmobManager.shared.loadInterstitial()
+                    }
+                } else {
+                    AdmobLog("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                    AdmobManager.shared.interstitialDelegate?.interstitialDidFailToReceiveAd(error: error)
+                    if let completion = completion {
+                        completion(error.localizedDescription)
+                    }
                 }
                 return
             } else {
                 if let completion = completion {
                     completion(nil)
                 }
-                
+                AdmobManager.shared.interstitialLoadingIndex = 0
                 AdmobManager.shared.interstitial = ad
                 AdmobManager.shared.interstitial?.fullScreenContentDelegate = self
                 AdmobManager.shared.interstitialHasBeenShow = false
@@ -289,22 +315,26 @@ public extension AdmobManager {
             AdmobManager.shared.openAdLoading = false
             
             if let error = error {
-                AdmobLog("Failed to load app open ad: \(error.localizedDescription)")
-                if let completion = completion {
-                    completion(error.localizedDescription)
-                }
                 if totalAds > 0 {
                     if AdmobManager.shared.openAdLoadingIndex >= totalAds - 1 {
+                        AdmobLog("Failed to load app open ad: \(error.localizedDescription)")
+                        if let completion = completion {
+                            completion(error.localizedDescription)
+                        }
                         AdmobManager.shared.openAdsDelegate?.openAdDidFailToReceiveAd(error: error)
                     } else {
                         AdmobManager.shared.openAdLoadingIndex += 1
                         if AdmobManager.shared.openAdLoadingIndex >= totalAds {
                             AdmobManager.shared.openAdLoadingIndex = totalAds - 1
                         }
-                        AdmobLog("Continue load ad at \(AdmobManager.shared.openAdLoadingIndex)")
+                        AdmobLog("Continue load open ad at \(AdmobManager.shared.openAdLoadingIndex)")
                         AdmobManager.shared.loadOpenAd()
                     }
                 } else {
+                    AdmobLog("Failed to load app open ad: \(error.localizedDescription)")
+                    if let completion = completion {
+                        completion(error.localizedDescription)
+                    }
                     AdmobManager.shared.openAdsDelegate?.openAdDidFailToReceiveAd(error: error)
                 }
                 
