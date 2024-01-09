@@ -6,7 +6,7 @@
 //  Copyright © 2022 MTSOFT. All rights reserved.
 //
 
-import MTSDK
+import MiTu
 import GoogleMobileAds
 
 public class NativeAdTableviewCell : UITableViewCell {

@@ -17,5 +17,5 @@ Pod::Spec.new do |s|
   s.source_files = 'Sources/*.swift'
   s.static_framework   = true
   s.dependency     'Google-Mobile-Ads-SDK'
-  s.dependency     'MTSDK'
+  s.dependency     'MiTu'
 end

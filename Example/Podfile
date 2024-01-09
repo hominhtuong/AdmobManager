@@ -1,7 +1,7 @@
 target 'Example' do
   use_frameworks!
 
-  pod 'MTSDK'
+  pod 'MiTu'
   pod 'AdmobManager', :path => '../'
 
 end

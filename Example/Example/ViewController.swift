@@ -6,7 +6,7 @@
 //
 
 import AdmobManager
-import MTSDK
+import MiTu
 import GoogleMobileAds
 
 class ViewController: UIViewController {
@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     //Variables
     private let kEnterBackground = "kEnterBackground"
     let nativeAdView = NativeAdView(style: .native)
+    var hasInitAd = false
 }
 
 extension ViewController {
@@ -26,21 +27,27 @@ extension ViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         
-        AdmobManager.shared.loadInterstitial()
-        
-        AdmobManager.shared.interstitialDelegate = self
-        AdmobManager.shared.openAdsDelegate = self
-        AdmobManager.shared.bannerDelegate = self
-        AdmobManager.shared.adLoaderDelegate = self
-        AdmobManager.shared.rewardDelegate = self
-        
         setupView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        
+        if hasInitAd {return}
+        hasInitAd = true
+        Task {
+            let id = UIDevice.current.identifierForVendor?.uuidString ?? ""
+            let error = await GDPRManager.shared.requestTracking()
+            
+            printDebug("tracking status: \(error?.localizedDescription ?? "")")
+            
+            if let error {
+                //handle error
+            } else {
+                // request ads
+                self.loadAd()
+            }
+        }
     }
     
     @objc func applicationDidBecomeActive() {
@@ -65,6 +72,37 @@ extension ViewController {
 }
 
 extension ViewController {
+    
+    private func loadAd() {
+        GADMobileAds.sharedInstance().start()
+        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = ["3bee8640fd90f80580322bc31417d55b"]
+        
+        let adUnits = AdUnits(
+                                bannerAdID: "ca-app-pub-3940256099942544/2934735716",
+                                interstitialAdID: "ca-app-pub-3940256099942544/4411468910",
+                                openAdID: "ca-app-pub-3940256099942544/5662855259",
+                                nativeAdID: "ca-app-pub-3940256099942544/3986624511",
+                                rewardAdID: "ca-app-pub-3940256099942544/1712485313")
+        
+//        let adUnits = AdUnits(
+//                                bannerAdID: "",
+//                                interstitialAdID: "",
+//                                openAdIDs: ["type1", "type2", "type3"],
+//                                rewardAdID: "ca-app-pub...")
+        
+        AdmobManager.shared.configs.adUnit = adUnits
+        AdmobManager.shared.configs.showLog = true
+        AdmobManager.shared.configs.frequencyCapping = 30
+        AdmobManager.shared.configs.impressionPercentage = 100
+
+        AdmobManager.shared.loadInterstitial()
+        AdmobManager.shared.interstitialDelegate = self
+        AdmobManager.shared.openAdsDelegate = self
+        AdmobManager.shared.bannerDelegate = self
+        AdmobManager.shared.adLoaderDelegate = self
+        AdmobManager.shared.rewardDelegate = self
+    }
+    
     private func setupView() {
         
         let nativeConfig = NativeConfigs()

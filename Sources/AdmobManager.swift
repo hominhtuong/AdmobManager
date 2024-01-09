@@ -7,7 +7,7 @@
 //
 
 import GoogleMobileAds
-import MTSDK
+import MiTu
 
 public class AdmobManager: NSObject {
     public static let shared = AdmobManager()
